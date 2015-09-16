@@ -14,23 +14,17 @@ class DiaryEntry {
     }
     
     private var formattedDateLine: String {
-        get {
-            let titleDateFormatter = NSDateFormatter()
-            titleDateFormatter.dateFormat = "dd MMMM yyyy"
-            return titleDateFormatter.stringFromDate(date)
-        }
+        let titleDateFormatter = NSDateFormatter()
+        titleDateFormatter.dateFormat = "dd MMMM yyyy"
+        return titleDateFormatter.stringFromDate(date)
     }
     
     private var formattedTitleLine: String {
-        get {
-            return title ?? ""
-        }
+        return title ?? ""
     }
     
     private var formattedTagLine: String {
-        get {
-            return " ".join(tags.map({ "[\($0)]" }))
-        }
+        return tags.map({ "[\($0)]" }).joinWithSeparator(" ")
     }
     
     private var formattedBody: String {
@@ -44,7 +38,7 @@ class DiaryEntry {
             formattedTagLine,
             formattedBody,
         ]
-        return "\n".join(elements.filter({ !$0.isEmpty }))
+        return elements.filter({ !$0.isEmpty }).joinWithSeparator("\n")
     }
 }
 
