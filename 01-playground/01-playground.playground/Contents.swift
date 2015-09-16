@@ -13,32 +13,38 @@ class DiaryEntry {
         self.tags = tags
     }
     
+    private var formattedDateLine: String {
+        get {
+            let titleDateFormatter = NSDateFormatter()
+            titleDateFormatter.dateFormat = "dd MMMM yyyy"
+            return titleDateFormatter.stringFromDate(date)
+        }
+    }
+    
+    private var formattedTitleLine: String {
+        get {
+            return title ?? ""
+        }
+    }
+    
+    private var formattedTagLine: String {
+        get {
+            return " ".join(tags.map({ "[\($0)]" }))
+        }
+    }
+    
+    private var formattedBody: String {
+        return body ?? ""
+    }
+    
     func fullDescription() -> String {
         let elements = [
-            formatDateLine(),
-            formatTitleLine(),
-            formatTagLine(),
-            formatBody()
+            formattedDateLine,
+            formattedTitleLine,
+            formattedTagLine,
+            formattedBody,
         ]
         return "\n".join(elements.filter({ !$0.isEmpty }))
-    }
-    
-    private func formatDateLine() -> String {
-        let titleDateFormatter = NSDateFormatter()
-        titleDateFormatter.dateFormat = "dd MMMM yyyy"
-        return titleDateFormatter.stringFromDate(date)
-    }
-    
-    private func formatTitleLine() -> String {
-        return title ?? ""
-    }
-    
-    private func formatTagLine() -> String {
-        return " ".join(tags.map({ "[\($0)]" }))
-    }
-    
-    private func formatBody() -> String {
-        return body ?? ""
     }
 }
 
