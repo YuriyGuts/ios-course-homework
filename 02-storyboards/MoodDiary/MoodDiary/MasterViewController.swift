@@ -16,17 +16,32 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        createNavigationButtons()
+        setUpSplitViewController()
+    }
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
+    func createNavigationButtons() {
+        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"),
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: "showSettingsScreen:"
+        )
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add,
+            target: self,
+            action: "createNewDiaryEntry:"
+        )
+        
+        self.navigationItem.leftBarButtonItem = settingsButton
         self.navigationItem.rightBarButtonItem = addButton
+    }
+    
+    func setUpSplitViewController() {
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
@@ -37,7 +52,18 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func insertNewObject(sender: AnyObject) {
+    func showSettingsScreen(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Settings",
+            message: "Replace me with an actual Settings screen.",
+            preferredStyle: .Alert
+        )
+        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(OKAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func createNewDiaryEntry(sender: AnyObject) {
         objects.insert(NSDate(), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
