@@ -9,32 +9,15 @@
 import UIKit
 
 class MasterViewController: UITableViewController {
-
+    
     var detailViewController: DetailViewController? = nil
     var objects = [AnyObject]()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        createNavigationButtons()
         setUpSplitViewController()
     }
 
-    func createNavigationButtons() {
-        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"),
-            style: UIBarButtonItemStyle.Plain,
-            target: self,
-            action: "showSettingsScreen:"
-        )
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add,
-            target: self,
-            action: "createNewDiaryEntry:"
-        )
-        
-        self.navigationItem.leftBarButtonItem = settingsButton
-        self.navigationItem.rightBarButtonItem = addButton
-    }
-    
     func setUpSplitViewController() {
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -52,23 +35,12 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func showSettingsScreen(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Settings",
-            message: "Replace me with an actual Settings screen.",
-            preferredStyle: .Alert
-        )
-        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(OKAction)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    func createNewDiaryEntry(sender: AnyObject) {
+    @IBAction func createNewDiaryEntry(sender: AnyObject) {
         objects.insert(NSDate(), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
-
+    
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -114,7 +86,6 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-
 
 }
 

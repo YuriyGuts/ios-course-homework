@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8CE7A101BAF7B7F0003CFB8 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE7A0F1BAF7B7F0003CFB8 /* SettingsController.swift */; settings = {ASSET_TAGS = (); }; };
 		D8F3E4EA1BAF3EED0042B543 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */; };
 		D8F3E4EC1BAF3EED0042B543 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4EB1BAF3EED0042B543 /* MasterViewController.swift */; };
 		D8F3E4EE1BAF3EED0042B543 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4ED1BAF3EED0042B543 /* DetailViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8CE7A0F1BAF7B7F0003CFB8 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D8F3E4E61BAF3EED0042B543 /* MoodDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8F3E4EB1BAF3EED0042B543 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				D8F3E4F21BAF3EED0042B543 /* Assets.xcassets */,
 				D8F3E4F41BAF3EED0042B543 /* LaunchScreen.storyboard */,
 				D8F3E4F71BAF3EED0042B543 /* Info.plist */,
+				D8CE7A0F1BAF7B7F0003CFB8 /* SettingsController.swift */,
 			);
 			path = MoodDiary;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8CE7A101BAF7B7F0003CFB8 /* SettingsController.swift in Sources */,
 				D8F3E4EE1BAF3EED0042B543 /* DetailViewController.swift in Sources */,
 				D8F3E4EC1BAF3EED0042B543 /* MasterViewController.swift in Sources */,
 				D8F3E4EA1BAF3EED0042B543 /* AppDelegate.swift in Sources */,
@@ -489,6 +493,7 @@
 				D8F3E5121BAF3EED0042B543 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D8F3E5131BAF3EED0042B543 /* Build configuration list for PBXNativeTarget "MoodDiaryTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +502,7 @@
 				D8F3E5151BAF3EED0042B543 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D8F3E5161BAF3EED0042B543 /* Build configuration list for PBXNativeTarget "MoodDiaryUITests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +511,7 @@
 				D8F3E5181BAF3EED0042B543 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
