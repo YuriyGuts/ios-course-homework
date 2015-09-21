@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8250BAD1BB023E80065718B /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BAC1BB023E80065718B /* DiaryEntry.swift */; settings = {ASSET_TAGS = (); }; };
+		D8250BAF1BB0246D0065718B /* DiaryEntryMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BAE1BB0246D0065718B /* DiaryEntryMood.swift */; settings = {ASSET_TAGS = (); }; };
+		D8250BB11BB038170065718B /* DiaryEntryEditedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BB01BB038170065718B /* DiaryEntryEditedDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		D8250BB31BB03CC30065718B /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BB21BB03CC30065718B /* SettingsModel.swift */; settings = {ASSET_TAGS = (); }; };
+		D8250BB51BB03D6B0065718B /* DateDisplayFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BB41BB03D6B0065718B /* DateDisplayFormatter.swift */; settings = {ASSET_TAGS = (); }; };
 		D8CE7A101BAF7B7F0003CFB8 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE7A0F1BAF7B7F0003CFB8 /* SettingsController.swift */; settings = {ASSET_TAGS = (); }; };
 		D8F3E4EA1BAF3EED0042B543 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */; };
 		D8F3E4EC1BAF3EED0042B543 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4EB1BAF3EED0042B543 /* MasterViewController.swift */; };
@@ -36,6 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8250BAC1BB023E80065718B /* DiaryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
+		D8250BAE1BB0246D0065718B /* DiaryEntryMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryMood.swift; sourceTree = "<group>"; };
+		D8250BB01BB038170065718B /* DiaryEntryEditedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryEditedDelegate.swift; sourceTree = "<group>"; };
+		D8250BB21BB03CC30065718B /* SettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		D8250BB41BB03D6B0065718B /* DateDisplayFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisplayFormatter.swift; sourceTree = "<group>"; };
 		D8CE7A0F1BAF7B7F0003CFB8 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D8F3E4E61BAF3EED0042B543 /* MoodDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +119,11 @@
 				D8F3E4F41BAF3EED0042B543 /* LaunchScreen.storyboard */,
 				D8F3E4F71BAF3EED0042B543 /* Info.plist */,
 				D8CE7A0F1BAF7B7F0003CFB8 /* SettingsController.swift */,
+				D8250BAC1BB023E80065718B /* DiaryEntry.swift */,
+				D8250BAE1BB0246D0065718B /* DiaryEntryMood.swift */,
+				D8250BB01BB038170065718B /* DiaryEntryEditedDelegate.swift */,
+				D8250BB21BB03CC30065718B /* SettingsModel.swift */,
+				D8250BB41BB03D6B0065718B /* DateDisplayFormatter.swift */,
 			);
 			path = MoodDiary;
 			sourceTree = "<group>";
@@ -261,10 +276,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8250BB31BB03CC30065718B /* SettingsModel.swift in Sources */,
 				D8CE7A101BAF7B7F0003CFB8 /* SettingsController.swift in Sources */,
+				D8250BAD1BB023E80065718B /* DiaryEntry.swift in Sources */,
 				D8F3E4EE1BAF3EED0042B543 /* DetailViewController.swift in Sources */,
 				D8F3E4EC1BAF3EED0042B543 /* MasterViewController.swift in Sources */,
+				D8250BB51BB03D6B0065718B /* DateDisplayFormatter.swift in Sources */,
+				D8250BB11BB038170065718B /* DiaryEntryEditedDelegate.swift in Sources */,
 				D8F3E4EA1BAF3EED0042B543 /* AppDelegate.swift in Sources */,
+				D8250BAF1BB0246D0065718B /* DiaryEntryMood.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

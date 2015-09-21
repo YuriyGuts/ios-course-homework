@@ -43,6 +43,9 @@
                                     <segment title="" image="mood_cloudy_sm"/>
                                     <segment title="" image="mood_rainy_sm"/>
                                 </segments>
+                                <connections>
+                                    <action selector="diaryEntryMoodChanged:" destination="JEX-9P-axG" eventType="valueChanged" id="JMb-BY-1Lc"/>
+                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E0a-pE-fZO">
                                 <rect key="frame" x="0.0" y="140" width="600" height="1"/>
@@ -52,6 +55,9 @@
                                 <rect key="frame" x="20" y="114" width="560" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="diaryEntryTitleEditingDidEnd:" destination="JEX-9P-axG" eventType="editingDidEnd" id="y2F-pg-lb9"/>
+                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Y9-Xc-bhe">
                                 <rect key="frame" x="15" y="149" width="570" height="431"/>
@@ -94,6 +100,12 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Diary Entry Title" id="mOI-FS-AaM"/>
+                    <connections>
+                        <outlet property="diaryEntryBodyEditor" destination="1Y9-Xc-bhe" id="JwO-zd-rID"/>
+                        <outlet property="diaryEntryMoodEditor" destination="7ij-hs-Yed" id="l3Y-nB-0ar"/>
+                        <outlet property="diaryEntryTitleEditor" destination="bXw-m8-EHP" id="wwn-iE-o1h"/>
+                        <outlet property="moodBackgroundView" destination="bqT-ko-Ry7" id="YnW-nX-TYH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
