@@ -238,7 +238,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" id="Y9u-BP-sOM">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="O1h-4a-jwg">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="O1h-4a-jwg">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="4gX-dH-rDw" id="EcW-x5-kzx"/>
                             </connections>
@@ -309,12 +309,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="All Entries" id="Zdf-7t-Un8">
-                        <barButtonItem key="leftBarButtonItem" image="settings" style="plain" id="2v6-Bs-mVv">
+                        <barButtonItem key="leftBarButtonItem" image="settings" id="2v6-Bs-mVv">
                             <connections>
                                 <segue destination="sq1-4B-ixE" kind="presentation" id="ndg-rB-rGL"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="3DI-7o-8vx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3DI-7o-8vx">
                             <connections>
                                 <action selector="createNewDiaryEntry:" destination="7bK-jq-Zjz" id="YuF-ya-i3K"/>
                             </connections>
