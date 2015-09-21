@@ -19,6 +19,7 @@ class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSplitViewController()
+        loadData()
     }
 
     func setUpSplitViewController() {
@@ -26,6 +27,35 @@ class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+    }
+    
+    func loadData() {
+        diaryEntries.removeAll()
+        
+        diaryEntries.append(
+            DiaryEntry(
+                date: NSDate(),
+                title: "Sunny Post",
+                body: NSAttributedString(string: "I'm in an excellent mood right now."),
+                mood: DiaryEntryMood.Sunny
+            )
+        )
+        diaryEntries.append(
+            DiaryEntry(
+                date: NSDate(),
+                title: "Cloudy Post",
+                body: NSAttributedString(string: "My mood could have been better."),
+                mood: DiaryEntryMood.Cloudy
+            )
+        )
+        diaryEntries.append(
+            DiaryEntry(
+                date: NSDate(),
+                title: "Rainy Post",
+                body: NSAttributedString(string: "Today might just be the worst day of my life."),
+                mood: DiaryEntryMood.Rainy
+            )
+        )
     }
     
     override func viewWillAppear(animated: Bool) {
