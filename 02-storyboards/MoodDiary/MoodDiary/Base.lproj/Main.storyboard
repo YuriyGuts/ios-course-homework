@@ -43,6 +43,12 @@
                                     <segment title="" image="mood_cloudy_sm"/>
                                     <segment title="" image="mood_rainy_sm"/>
                                 </segments>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="diaryEntryMoodChanged:" destination="JEX-9P-axG" eventType="valueChanged" id="JMb-BY-1Lc"/>
                                 </connections>
