@@ -25,7 +25,6 @@ class MasterViewController: UITableViewController {
         setUpSplitViewController()
         setUpDateDisplayFormatter()
         setUpNotificationObservers()
-        loadData()
     }
     
     func setUpSplitViewController() {
@@ -74,35 +73,6 @@ class MasterViewController: UITableViewController {
         let newSettings = userInfo["newSettings"]!
         self.dateDisplayFormatter = DateDisplayFormatter(settings: newSettings)
         self.tableView.reloadData()
-    }
-    
-    func loadData() {
-        diaryEntries.removeAll()
-        
-        diaryEntries.append(
-            DiaryEntry(
-                date: NSDate(),
-                title: "Sunny Post",
-                body: NSAttributedString(string: "I'm in an excellent mood right now."),
-                mood: DiaryEntryMood.Sunny
-            )
-        )
-        diaryEntries.append(
-            DiaryEntry(
-                date: NSDate(),
-                title: "Cloudy Post",
-                body: NSAttributedString(string: "My mood could have been better."),
-                mood: DiaryEntryMood.Cloudy
-            )
-        )
-        diaryEntries.append(
-            DiaryEntry(
-                date: NSDate(),
-                title: "Rainy Post",
-                body: NSAttributedString(string: "Today might just be the worst day of my life."),
-                mood: DiaryEntryMood.Rainy
-            )
-        )
     }
     
     override func viewWillAppear(animated: Bool) {

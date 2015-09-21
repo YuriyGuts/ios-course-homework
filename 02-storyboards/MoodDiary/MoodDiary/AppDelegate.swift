@@ -20,14 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         settings = Settings()
         
         let splitViewController = self.window!.rootViewController as! UISplitViewController
+        let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
         let detailNavigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
+        
+        let masterController = masterNavigationController.viewControllers[0] as! MasterViewController
+        masterController.diaryEntries = loadDummyData()
         
         detailNavigationController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
         
         return true
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -48,6 +52,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func loadDummyData() -> [DiaryEntry] {
+        var diaryEntries = [DiaryEntry]()
+        
+        diaryEntries.append(
+            DiaryEntry(
+                date: NSDate(),
+                title: "Sunny Post",
+                body: NSAttributedString(string: "I'm in an excellent mood right now."),
+                mood: DiaryEntryMood.Sunny
+            )
+        )
+        diaryEntries.append(
+            DiaryEntry(
+                date: NSDate(),
+                title: "Cloudy Post",
+                body: NSAttributedString(string: "My mood could have been better."),
+                mood: DiaryEntryMood.Cloudy
+            )
+        )
+        diaryEntries.append(
+            DiaryEntry(
+                date: NSDate(),
+                title: "Rainy Post",
+                body: NSAttributedString(string: "Today might just be the worst day of my life."),
+                mood: DiaryEntryMood.Rainy
+            )
+        )
+        
+        return diaryEntries
     }
 
     // MARK: - Split view
