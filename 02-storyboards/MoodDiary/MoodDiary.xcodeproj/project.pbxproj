@@ -11,7 +11,6 @@
 		D80C375D1BB0C20000989F7A /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C375C1BB0C20000989F7A /* DateExtensions.swift */; settings = {ASSET_TAGS = (); }; };
 		D8250BAD1BB023E80065718B /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BAC1BB023E80065718B /* DiaryEntry.swift */; settings = {ASSET_TAGS = (); }; };
 		D8250BAF1BB0246D0065718B /* DiaryEntryMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BAE1BB0246D0065718B /* DiaryEntryMood.swift */; settings = {ASSET_TAGS = (); }; };
-		D8250BB11BB038170065718B /* DiaryEntryEditedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BB01BB038170065718B /* DiaryEntryEditedDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		D8250BB31BB03CC30065718B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BB21BB03CC30065718B /* Settings.swift */; settings = {ASSET_TAGS = (); }; };
 		D8250BB51BB03D6B0065718B /* DateDisplayFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BB41BB03D6B0065718B /* DateDisplayFormatter.swift */; settings = {ASSET_TAGS = (); }; };
 		D8CE7A101BAF7B7F0003CFB8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -47,7 +46,6 @@
 		D80C375C1BB0C20000989F7A /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		D8250BAC1BB023E80065718B /* DiaryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
 		D8250BAE1BB0246D0065718B /* DiaryEntryMood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryMood.swift; sourceTree = "<group>"; };
-		D8250BB01BB038170065718B /* DiaryEntryEditedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryEditedDelegate.swift; sourceTree = "<group>"; };
 		D8250BB21BB03CC30065718B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D8250BB41BB03D6B0065718B /* DateDisplayFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisplayFormatter.swift; sourceTree = "<group>"; };
 		D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 				D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */,
 				D8250BAC1BB023E80065718B /* DiaryEntry.swift */,
 				D8250BAE1BB0246D0065718B /* DiaryEntryMood.swift */,
-				D8250BB01BB038170065718B /* DiaryEntryEditedDelegate.swift */,
 				D8250BB21BB03CC30065718B /* Settings.swift */,
 				D8250BB41BB03D6B0065718B /* DateDisplayFormatter.swift */,
 				D80C375A1BB0A1F700989F7A /* Notifications.swift */,
@@ -289,7 +286,6 @@
 				D8F3E4EC1BAF3EED0042B543 /* MasterViewController.swift in Sources */,
 				D80C375D1BB0C20000989F7A /* DateExtensions.swift in Sources */,
 				D8250BB51BB03D6B0065718B /* DateDisplayFormatter.swift in Sources */,
-				D8250BB11BB038170065718B /* DiaryEntryEditedDelegate.swift in Sources */,
 				D8F3E4EA1BAF3EED0042B543 /* AppDelegate.swift in Sources */,
 				D80C375B1BB0A1F700989F7A /* Notifications.swift in Sources */,
 				D8250BAF1BB0246D0065718B /* DiaryEntryMood.swift in Sources */,

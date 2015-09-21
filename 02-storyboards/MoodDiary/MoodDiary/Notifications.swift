@@ -9,5 +9,9 @@
 import Foundation
 
 class Notifications {
-    static let SettingsChangedNotification: String = NSBundle.mainBundle().bundleIdentifier! + ".SettingsChangedNotification"
+    private static let prefix: String = NSBundle.mainBundle().bundleIdentifier! + ".notifications."
+    
+    static let SettingsChangedNotification = Notifications.prefix + "SettingsChangedNotification"
+    
+    static let DiaryEntryUpdatedNotification = Notifications.prefix + "DiaryEntryUpdatedNotification"
 }

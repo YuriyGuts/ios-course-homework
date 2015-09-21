@@ -49,8 +49,6 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             self.configureView()
         }
     }
-    
-    var delegate: DiaryEntryEditedDelegate?
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -93,9 +91,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         
         if let diaryEntry = self.diaryEntry {
             diaryEntry.title = sender.text
-            if let delegate = self.delegate {
-                delegate.diaryEntryEdited(diaryEntry)
-            }
+            postDiaryEntryUpdatedNotification(diaryEntry)
         }
     }
     
@@ -105,18 +101,23 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         
         if let diaryEntry = self.diaryEntry {
             diaryEntry.mood = newMood
-            if let delegate = self.delegate {
-                delegate.diaryEntryEdited(diaryEntry)
-            }
+            postDiaryEntryUpdatedNotification(diaryEntry)
         }
     }
 
     func textViewDidChange(textView: UITextView) {
         if let diaryEntry = self.diaryEntry {
             diaryEntry.body = textView.attributedText
-            if let delegate = self.delegate {
-                delegate.diaryEntryEdited(diaryEntry)
-            }
+            postDiaryEntryUpdatedNotification(diaryEntry)
         }
+    }
+    
+    func postDiaryEntryUpdatedNotification(diaryEntry: DiaryEntry) {
+        // Post a notification so that the view controllers can update their views.
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            Notifications.DiaryEntryUpdatedNotification,
+            object: nil,
+            userInfo: ["diaryEntry": diaryEntry]
+        )
     }
 }

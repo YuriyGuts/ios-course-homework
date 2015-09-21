@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
+class MasterViewController: UITableViewController {
     
     var detailViewController: DetailViewController? = nil
 
@@ -17,6 +17,8 @@ class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
     var dateDisplayFormatter: DateDisplayFormatter? = nil
     
     var settingsChangedObserver: NSObjectProtocol? = nil
+    
+    var diaryEntryUpdatedObserver: NSObjectProtocol? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,17 @@ class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
             queue: mainQueue,
             usingBlock: handleSettingsChangedNotification
         )
+        
+        diaryEntryUpdatedObserver = notificationCenter.addObserverForName(
+            Notifications.DiaryEntryUpdatedNotification,
+            object: nil,
+            queue: mainQueue,
+            usingBlock: handleDiaryEntryUpdatedNotification
+        )
+    }
+    
+    func handleDiaryEntryUpdatedNotification(notification: NSNotification) {
+        self.tableView.reloadData()
     }
     
     func handleSettingsChangedNotification(notification: NSNotification) {
@@ -129,7 +142,6 @@ class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
                 let diaryEntry = diaryEntries[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 controller.diaryEntry = diaryEntry
-                controller.delegate = self
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -170,12 +182,6 @@ class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
-    }
-
-    // MARK: - DiaryEntryEditedDelegate
-    
-    func diaryEntryEdited(diaryEntry: DiaryEntry) {
-        tableView.reloadData()
     }
 }
 
