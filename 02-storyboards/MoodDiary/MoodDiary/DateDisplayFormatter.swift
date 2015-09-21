@@ -10,11 +10,11 @@ import Foundation
 
 class DateDisplayFormatter {
     
-    let settings: SettingsModel
+    let settings: Settings
     
     let dateFormatter: NSDateFormatter
     
-    init(settings: SettingsModel) {
+    init(settings: Settings) {
         self.settings = settings
         
         dateFormatter = NSDateFormatter()
@@ -26,10 +26,11 @@ class DateDisplayFormatter {
         else {
             dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
         }
+        
+        dateFormatter.doesRelativeDateFormatting = self.settings.useRelativeDates
     }
     
     func format(date: NSDate) -> String {
-        // TODO: Support relative dates.
         return dateFormatter.stringFromDate(date)
     }
 }

@@ -13,20 +13,54 @@ class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
     var detailViewController: DetailViewController? = nil
 
     var diaryEntries = [DiaryEntry]()
-
-    var dateDisplayFormatter = DateDisplayFormatter(settings: SettingsModel())
+    
+    var dateDisplayFormatter: DateDisplayFormatter? = nil
+    
+    var settingsChangedObserver: NSObjectProtocol? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSplitViewController()
+        setUpDateDisplayFormatter()
+        setUpNotificationObservers()
         loadData()
     }
-
+    
     func setUpSplitViewController() {
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+    }
+    
+    func setUpDateDisplayFormatter() {
+        if let settings = readSettingsFromAppDelegate() {
+            dateDisplayFormatter = DateDisplayFormatter(settings: settings)
+        }
+    }
+    
+    func readSettingsFromAppDelegate() -> Settings? {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.settings
+    }
+    
+    func setUpNotificationObservers() {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        let mainQueue = NSOperationQueue.mainQueue()
+        
+        settingsChangedObserver = notificationCenter.addObserverForName(
+            Notifications.SettingsChangedNotification,
+            object: nil,
+            queue: mainQueue,
+            usingBlock: handleSettingsChangedNotification
+        )
+    }
+    
+    func handleSettingsChangedNotification(notification: NSNotification) {
+        let userInfo = notification.userInfo as! Dictionary<String, Settings>
+        let newSettings = userInfo["newSettings"]!
+        self.dateDisplayFormatter = DateDisplayFormatter(settings: newSettings)
+        self.tableView.reloadData()
     }
     
     func loadData() {
@@ -84,6 +118,12 @@ class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showSettings" {
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! SettingsViewController
+            let settings = readSettingsFromAppDelegate()
+            controller.loadSettingsObjectIntoUI(settings!)
+        }
+        
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let diaryEntry = diaryEntries[indexPath.row]
@@ -113,7 +153,7 @@ class MasterViewController: UITableViewController, DiaryEntryEditedDelegate {
         cell.textLabel!.text = diaryEntry.title
         
         // TODO: Format this properly according to settings.
-        cell.detailTextLabel!.text = dateDisplayFormatter.format(diaryEntry.date)
+        cell.detailTextLabel!.text = dateDisplayFormatter!.format(diaryEntry.date)
         
         return cell
     }

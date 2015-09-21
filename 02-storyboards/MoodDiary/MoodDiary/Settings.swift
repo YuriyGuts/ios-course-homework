@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SettingsModel {
+class Settings {
     
     var includeTime: Bool
     

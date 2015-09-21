@@ -141,15 +141,15 @@
         <!--Settings-->
         <scene sceneID="tRE-0k-L58">
             <objects>
-                <tableViewController id="4gX-dH-rDw" customClass="SettingsController" customModule="MoodDiary" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="hTd-3f-XOU">
+                <tableViewController id="4gX-dH-rDw" customClass="SettingsViewController" customModule="MoodDiary" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="hTd-3f-XOU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Date Format" id="yrX-5e-j8R">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="Z2q-HC-bRV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" indentationWidth="10" id="Z2q-HC-bRV">
                                         <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z2q-HC-bRV" id="Qps-hQ-DdO">
@@ -171,7 +171,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="RBp-Fg-ykk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="RBp-Fg-ykk">
                                         <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RBp-Fg-ykk" id="ZcH-Pn-PcT">
@@ -197,7 +197,7 @@
                             </tableViewSection>
                             <tableViewSection id="upb-Ke-abo">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pag-Wj-0i6">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="pag-Wj-0i6">
                                         <rect key="frame" x="0.0" y="237.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pag-Wj-0i6" id="Llr-rr-FG9">
@@ -212,6 +212,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBn-aT-7wL">
                                                     <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="useRelativeDatesSwitchChanged:" destination="4gX-dH-rDw" eventType="valueChanged" id="kkC-3G-fEL"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -228,7 +231,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Example" id="KI1-vi-ovn">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="scj-uh-ad2">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="scj-uh-ad2">
                                         <rect key="frame" x="0.0" y="331.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="scj-uh-ad2" id="CUE-07-1Oo">
@@ -237,8 +240,8 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday 3:02 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48Q-Id-WfV">
                                                     <rect key="frame" x="15" y="11" width="577" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -268,6 +271,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="dateFormatDateAndTimeCell" destination="Z2q-HC-bRV" id="x6F-cS-9mu"/>
+                        <outlet property="dateFormatDateOnlyCell" destination="RBp-Fg-ykk" id="nEh-cE-5W4"/>
+                        <outlet property="datePreviewLabel" destination="48Q-Id-WfV" id="e3a-c9-rZc"/>
+                        <outlet property="useRelativeDatesSwitch" destination="oBn-aT-7wL" id="Zd3-wX-lRm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3x-M5-Lpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -334,7 +343,7 @@
                     <navigationItem key="navigationItem" title="All Entries" id="Zdf-7t-Un8">
                         <barButtonItem key="leftBarButtonItem" image="settings" id="2v6-Bs-mVv">
                             <connections>
-                                <segue destination="sq1-4B-ixE" kind="presentation" id="ndg-rB-rGL"/>
+                                <segue destination="sq1-4B-ixE" kind="presentation" identifier="showSettings" id="ndg-rB-rGL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="3DI-7o-8vx">
