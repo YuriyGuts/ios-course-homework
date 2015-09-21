@@ -18,6 +18,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var moodBackgroundView: UIImageView?
     
+    @IBOutlet weak var navigationBarTitle: UINavigationItem?
+    
     var currentMood: DiaryEntryMood? {
         didSet {
             if let moodBackground = moodBackgroundView, mood = currentMood {
@@ -53,6 +55,9 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     func configureView() {
         // Update the user interface for the detail item.
         if let diaryEntry = self.diaryEntry {
+            if let navigationTitle = navigationBarTitle {
+                navigationTitle.title = diaryEntry.title
+            }
             if let titleEditor = self.diaryEntryTitleEditor {
                 titleEditor.text = diaryEntry.title
             }
@@ -82,6 +87,10 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     }
 
     @IBAction func diaryEntryTitleEditingDidEnd(sender: UITextField) {
+        if let navigationTitle = navigationBarTitle {
+            navigationTitle.title = sender.text
+        }
+        
         if let diaryEntry = self.diaryEntry {
             diaryEntry.title = sender.text
             if let delegate = self.delegate {

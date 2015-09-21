@@ -105,6 +105,7 @@
                         <outlet property="diaryEntryMoodEditor" destination="7ij-hs-Yed" id="l3Y-nB-0ar"/>
                         <outlet property="diaryEntryTitleEditor" destination="bXw-m8-EHP" id="wwn-iE-o1h"/>
                         <outlet property="moodBackgroundView" destination="bqT-ko-Ry7" id="YnW-nX-TYH"/>
+                        <outlet property="navigationBarTitle" destination="mOI-FS-AaM" id="Bud-cb-EQ1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
