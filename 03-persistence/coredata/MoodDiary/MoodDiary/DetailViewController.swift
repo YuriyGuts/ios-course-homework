@@ -32,7 +32,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         }
     }
 
-    var diaryEntry: DiaryEntry? {
+    var diaryEntry: PersistentDiaryEntry? {
         didSet {
             // Update the view.
             self.configureView()
@@ -51,7 +51,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             if let bodyEditor = self.diaryEntryBodyEditor {
                 bodyEditor.attributedText = diaryEntry.body
             }
-            currentMood = diaryEntry.mood
+            currentMood = diaryEntry.moodEnum
         }
     }
 
@@ -89,7 +89,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         currentMood = newMood
         
         if let diaryEntry = self.diaryEntry {
-            diaryEntry.mood = newMood
+            diaryEntry.moodEnum = newMood
             postDiaryEntryUpdatedNotification(diaryEntry)
         }
     }
@@ -101,7 +101,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func postDiaryEntryUpdatedNotification(diaryEntry: DiaryEntry) {
+    func postDiaryEntryUpdatedNotification(diaryEntry: PersistentDiaryEntry) {
         // Post a notification so that the view controllers can update their views.
         NSNotificationCenter.defaultCenter().postNotificationName(
             Notifications.DiaryEntryUpdatedNotification,

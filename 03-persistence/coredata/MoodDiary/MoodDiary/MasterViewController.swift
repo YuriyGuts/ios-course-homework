@@ -6,13 +6,27 @@
 //  Copyright © 2015 Yuriy Guts. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class MasterViewController: UITableViewController {
     
-    var detailViewController: DetailViewController? = nil
+    private var _cachedDisplayedDiaryEntries: [PersistentDiaryEntry]?
+    
+    var displayedDiaryEntries: [PersistentDiaryEntry] {
+        if let _cachedDisplayedDiaryEntries = _cachedDisplayedDiaryEntries {
+            return _cachedDisplayedDiaryEntries
+        }
+        return fetchDiaryEntries()
+    }
+    
+    var managedObjectContext: NSManagedObjectContext? = nil {
+        didSet {
+            invalidateDisplayedDiaryEntries()
+        }
+    }
 
-    var diaryEntries = [DiaryEntry]()
+    var detailViewController: DetailViewController? = nil
     
     var dateDisplayFormatter: DateDisplayFormatter? = nil
     
@@ -65,7 +79,16 @@ class MasterViewController: UITableViewController {
     }
     
     func handleDiaryEntryUpdatedNotification(notification: NSNotification) {
-        self.tableView.reloadData()
+        if let managedObjectContext = managedObjectContext {
+            do {
+                try managedObjectContext.save()
+            }
+            catch let error as NSError {
+                NSLog("Error while saving a diary entry: \(error.domain)")
+            }
+        }
+        
+        invalidateDisplayedDiaryEntries()
     }
     
     func handleSettingsChangedNotification(notification: NSNotification) {
@@ -86,16 +109,7 @@ class MasterViewController: UITableViewController {
     }
 
     @IBAction func createNewDiaryEntry(sender: AnyObject) {
-        let newEntry = DiaryEntry(
-            date: NSDate(),
-            title: "(untitled)",
-            body: NSAttributedString(string: ""),
-            mood: DiaryEntryMood.Sunny
-        )
-        
-        diaryEntries.insert(newEntry, atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        saveNewDiaryEntry()
     }
     
     // MARK: - Segues
@@ -109,7 +123,7 @@ class MasterViewController: UITableViewController {
         
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let diaryEntry = diaryEntries[indexPath.row]
+                let diaryEntry = displayedDiaryEntries[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 controller.diaryEntry = diaryEntry
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -125,21 +139,21 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return diaryEntries.count
+        return displayedDiaryEntries.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        let diaryEntry = diaryEntries[indexPath.row]
+        let diaryEntry = displayedDiaryEntries[indexPath.row]
         let displayTitle = (diaryEntry.title == nil || diaryEntry.title?.isEmpty == true)
             ? "(untitled)"
             : diaryEntry.title
 
-        cell.imageView?.image = AssetsHelper.iconImageForMood(diaryEntry.mood!)
-        cell.imageView?.tintColor = AssetsHelper.iconTintForMood(diaryEntry.mood!)
+        cell.imageView?.image = AssetsHelper.iconImageForMood(diaryEntry.moodEnum!)
+        cell.imageView?.tintColor = AssetsHelper.iconTintForMood(diaryEntry.moodEnum!)
         cell.textLabel!.text = displayTitle
-        cell.detailTextLabel!.text = dateDisplayFormatter!.format(diaryEntry.date)
+        cell.detailTextLabel!.text = dateDisplayFormatter!.format(diaryEntry.date!)
         
         return cell
     }
@@ -151,11 +165,79 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            diaryEntries.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+            deleteDiaryEntryAt(indexPath: indexPath)
         }
+    }
+    
+    // MARK: - Table Data Manipulation
+    
+    func fetchDiaryEntries() -> [PersistentDiaryEntry] {
+        if let managedObjectContext = managedObjectContext {
+            let fetchRequest = NSFetchRequest()
+            fetchRequest.entity = NSEntityDescription.entityForName("DiaryEntry", inManagedObjectContext: managedObjectContext)
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+            
+            do {
+                let fetchResults = try managedObjectContext.executeFetchRequest(fetchRequest)
+                if let results = fetchResults as? [PersistentDiaryEntry] {
+                    _cachedDisplayedDiaryEntries = results
+                    return _cachedDisplayedDiaryEntries!
+                }
+            }
+            catch let error as NSError {
+                NSLog("Error while fetching diary entries: \(error.domain)")
+            }
+        }
+        return []
+    }
+    
+    func saveNewDiaryEntry() {
+        if let managedObjectContext = managedObjectContext {
+            if let newEntry = NSEntityDescription.insertNewObjectForEntityForName("DiaryEntry", inManagedObjectContext: managedObjectContext) as? PersistentDiaryEntry {
+                newEntry.date = NSDate()
+                newEntry.title = "(untitled)"
+                newEntry.body = NSAttributedString(string: "")
+                newEntry.moodEnum = DiaryEntryMood.Sunny
+                
+                do {
+                    try managedObjectContext.save()
+                }
+                catch let error as NSError {
+                    NSLog("Error while saving a new diary entry: \(error.domain)")
+                }
+                
+                invalidateDisplayedDiaryEntries(animated: true)
+            }
+        }
+    }
+    
+    func invalidateDisplayedDiaryEntries(animated animated: Bool = false) {
+        _cachedDisplayedDiaryEntries = nil
+        if animated {
+            tableView?.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
+        } else {
+            tableView?.reloadData()
+        }
+    }
+    
+    func displayedDiaryEntryAt(indexPath indexPath: NSIndexPath) -> PersistentDiaryEntry {
+        return displayedDiaryEntries[indexPath.row]
+    }
+    
+    func deleteDiaryEntryAt(indexPath indexPath: NSIndexPath) {
+        if let managedObjectContext = managedObjectContext {
+            let diaryEntryToDelete = displayedDiaryEntryAt(indexPath: indexPath)
+            managedObjectContext.deleteObject(diaryEntryToDelete)
+
+            do {
+                try managedObjectContext.save()
+            }
+            catch let error as NSError {
+                NSLog("Error while deleting a diary entry: \(error.domain)")
+            }
+        }
+        
+        invalidateDisplayedDiaryEntries(animated: true)
     }
 }
 

@@ -9,7 +9,9 @@
 import Foundation
 
 enum DiaryEntryMood: Int {
+    
     case Sunny = 0
     case Cloudy = 1
     case Rainy = 2
+
 }
