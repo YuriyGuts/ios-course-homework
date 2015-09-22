@@ -79,15 +79,7 @@ class MasterViewController: UITableViewController {
     }
     
     func handleDiaryEntryUpdatedNotification(notification: NSNotification) {
-        if let managedObjectContext = managedObjectContext {
-            do {
-                try managedObjectContext.save()
-            }
-            catch let error as NSError {
-                NSLog("Error while saving a diary entry: \(error.domain)")
-            }
-        }
-        
+        saveManagedObjectContext()
         invalidateDisplayedDiaryEntries()
     }
     
@@ -198,13 +190,7 @@ class MasterViewController: UITableViewController {
                 newEntry.title = "(untitled)"
                 newEntry.body = NSAttributedString(string: "")
                 newEntry.moodEnum = DiaryEntryMood.Sunny
-                
-                do {
-                    try managedObjectContext.save()
-                }
-                catch let error as NSError {
-                    NSLog("Error while saving a new diary entry: \(error.domain)")
-                }
+                saveManagedObjectContext()
                 
                 invalidateDisplayedDiaryEntries(animated: true)
             }
@@ -228,16 +214,23 @@ class MasterViewController: UITableViewController {
         if let managedObjectContext = managedObjectContext {
             let diaryEntryToDelete = displayedDiaryEntryAt(indexPath: indexPath)
             managedObjectContext.deleteObject(diaryEntryToDelete)
-
-            do {
-                try managedObjectContext.save()
-            }
-            catch let error as NSError {
-                NSLog("Error while deleting a diary entry: \(error.domain)")
-            }
+            saveManagedObjectContext()
         }
-        
         invalidateDisplayedDiaryEntries(animated: true)
     }
+    
+    func saveManagedObjectContext () {
+        if let moc = self.managedObjectContext {
+            var error: NSError? = nil
+            if moc.hasChanges {
+                do {
+                    try moc.save()
+                }
+                catch let errorDuringSave as NSError {
+                    error = errorDuringSave
+                    NSLog("Error while saving data: \(error), \(error!.userInfo)")
+                }
+            }
+        }
+    }
 }
-

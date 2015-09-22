@@ -135,25 +135,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return managedObjectContext
     }()
     
-    // MARK: - Core Data Saving support
-    
-    func saveContext () {
-        if let moc = self.managedObjectContext {
-            var error: NSError? = nil
-            if moc.hasChanges {
-                do {
-                    try moc.save()
-                } catch let errorDuringSave as NSError {
-                    error = errorDuringSave
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate.
-                    // You should not use this function in a shipping application,
-                    // although it may be useful during development.
-                    NSLog("Unresolved error \(error), \(error!.userInfo)")
-                    abort()
-                }
-            }
-        }
-    }
 }
 
