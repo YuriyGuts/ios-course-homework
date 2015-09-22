@@ -88,8 +88,8 @@ class MasterViewController: UITableViewController {
     @IBAction func createNewDiaryEntry(sender: AnyObject) {
         let newEntry = DiaryEntry(
             date: NSDate(),
-            title: "Title",
-            body: NSAttributedString(string: "Body"),
+            title: "(untitled)",
+            body: NSAttributedString(string: ""),
             mood: DiaryEntryMood.Sunny
         )
         
@@ -132,9 +132,13 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         let diaryEntry = diaryEntries[indexPath.row]
-        cell.textLabel!.text = diaryEntry.title
-        
-        // TODO: Format this properly according to settings.
+        let displayTitle = (diaryEntry.title == nil || diaryEntry.title?.isEmpty == true)
+            ? "(untitled)"
+            : diaryEntry.title
+
+        cell.imageView?.image = AssetsHelper.iconImageForMood(diaryEntry.mood!)
+        cell.imageView?.tintColor = AssetsHelper.iconTintForMood(diaryEntry.mood!)
+        cell.textLabel!.text = displayTitle
         cell.detailTextLabel!.text = dateDisplayFormatter!.format(diaryEntry.date)
         
         return cell

@@ -23,18 +23,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     var currentMood: DiaryEntryMood? {
         didSet {
             if let moodBackground = moodBackgroundView, mood = currentMood {
-                var backgroundImageAssetID: String
-                
-                switch mood {
-                case DiaryEntryMood.Cloudy:
-                    backgroundImageAssetID = "mood_cloudy_bg"
-                case DiaryEntryMood.Rainy:
-                    backgroundImageAssetID = "mood_rainy_bg"
-                default:
-                    backgroundImageAssetID = "mood_sunny_bg"
-                }
-                
-                moodBackground.image = UIImage(named: backgroundImageAssetID)
+                moodBackground.image = AssetsHelper.backgroundImageForMood(mood)
                 
                 if let moodEditor = self.diaryEntryMoodEditor {
                     moodEditor.selectedSegmentIndex = (currentMood?.rawValue)!
