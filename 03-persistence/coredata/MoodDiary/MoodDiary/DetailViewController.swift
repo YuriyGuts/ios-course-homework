@@ -20,13 +20,13 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var navigationBarTitle: UINavigationItem?
     
-    var currentMood: DiaryEntryMood? {
+    var currentDisplayedMood: DiaryEntryMood? {
         didSet {
-            if let moodBackground = moodBackgroundView, mood = currentMood {
+            if let moodBackground = moodBackgroundView, mood = currentDisplayedMood {
                 moodBackground.image = AssetsHelper.backgroundImageForMood(mood)
                 
                 if let moodEditor = self.diaryEntryMoodEditor {
-                    moodEditor.selectedSegmentIndex = (currentMood?.rawValue)!
+                    moodEditor.selectedSegmentIndex = (currentDisplayedMood?.rawValue)!
                 }
             }
         }
@@ -51,7 +51,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             if let bodyEditor = self.diaryEntryBodyEditor {
                 bodyEditor.attributedText = diaryEntry.body
             }
-            currentMood = diaryEntry.moodEnum
+            currentDisplayedMood = diaryEntry.moodEnum
         }
     }
 
@@ -73,20 +73,17 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    func textViewDidChange(textView: UITextView) {
+        diaryEntryBodyChanged(newBody: textView.attributedText)
+    }
+
     @IBAction func diaryEntryTitleEditingDidEnd(sender: UITextField) {
-        if let navigationTitle = navigationBarTitle {
-            navigationTitle.title = sender.text
-        }
-        
-        if let diaryEntry = self.diaryEntry {
-            diaryEntry.title = sender.text
-            postDiaryEntryUpdatedNotification(diaryEntry)
-        }
+        diaryEntryTitleChanged(newTitle: sender.text)
     }
     
     @IBAction func diaryEntryMoodChanged(sender: AnyObject) {
         let newMood = DiaryEntryMood(rawValue: sender.selectedSegmentIndex)
-        currentMood = newMood
+        currentDisplayedMood = newMood
         
         if let diaryEntry = self.diaryEntry {
             diaryEntry.moodEnum = newMood
@@ -94,9 +91,20 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         }
     }
 
-    func textViewDidChange(textView: UITextView) {
+    func diaryEntryTitleChanged(newTitle newTitle: String?) {
+        if let navigationTitle = navigationBarTitle {
+            navigationTitle.title = newTitle
+        }
+        
         if let diaryEntry = self.diaryEntry {
-            diaryEntry.body = textView.attributedText
+            diaryEntry.title = newTitle
+            postDiaryEntryUpdatedNotification(diaryEntry)
+        }
+    }
+    
+    func diaryEntryBodyChanged(newBody newBody: NSAttributedString?) {
+        if let diaryEntry = self.diaryEntry {
+            diaryEntry.body = newBody
             postDiaryEntryUpdatedNotification(diaryEntry)
         }
     }

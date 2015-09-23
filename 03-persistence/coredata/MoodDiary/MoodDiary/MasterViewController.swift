@@ -87,7 +87,7 @@ class MasterViewController: UITableViewController {
         let userInfo = notification.userInfo as! Dictionary<String, Settings>
         let newSettings = userInfo["newSettings"]!
         self.dateDisplayFormatter = DateDisplayFormatter(settings: newSettings)
-        self.tableView.reloadData()
+        invalidateDisplayedDiaryEntries(animated: true)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -177,7 +177,7 @@ class MasterViewController: UITableViewController {
                 }
             }
             catch let error as NSError {
-                NSLog("Error while fetching diary entries: \(error.domain)")
+                NSLog("Error while fetching data: \(error), \(error.userInfo)")
             }
         }
         return []
