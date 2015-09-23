@@ -25,7 +25,7 @@ class PersistenceTests: XCTestCase {
     }
     
     func setUpPersistentStoreCoordinator() {
-        guard let modelURL = NSBundle(forClass: AppDelegate.self).URLForResource("MoodDiaryModel", withExtension: "momd") else {
+        guard let modelURL = NSBundle(forClass: PersistenceTests.self).URLForResource("MoodDiaryModel", withExtension: "momd") else {
             XCTFail("Should be able to find momd")
             return
         }

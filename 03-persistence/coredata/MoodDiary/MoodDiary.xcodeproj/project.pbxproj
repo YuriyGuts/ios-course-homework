@@ -15,6 +15,9 @@
 		D8250BB51BB03D6B0065718B /* DateDisplayFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BB41BB03D6B0065718B /* DateDisplayFormatter.swift */; settings = {ASSET_TAGS = (); }; };
 		D84169D61BB1F8C100C805CE /* MoodDiaryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D84169D41BB1F8C100C805CE /* MoodDiaryModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		D84169E61BB2082600C805CE /* PersistentDiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84169E41BB2082600C805CE /* PersistentDiaryEntry.swift */; settings = {ASSET_TAGS = (); }; };
+		D84169E71BB2C87000C805CE /* MoodDiaryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D84169D41BB1F8C100C805CE /* MoodDiaryModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		D84169E81BB2C9EC00C805CE /* PersistentDiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84169E41BB2082600C805CE /* PersistentDiaryEntry.swift */; settings = {ASSET_TAGS = (); }; };
+		D84169E91BB2C9FC00C805CE /* DiaryEntryMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BAE1BB0246D0065718B /* DiaryEntryMood.swift */; settings = {ASSET_TAGS = (); }; };
 		D8CE7A101BAF7B7F0003CFB8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D8F3E4EA1BAF3EED0042B543 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */; };
 		D8F3E4EC1BAF3EED0042B543 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4EB1BAF3EED0042B543 /* MasterViewController.swift */; };
@@ -336,7 +339,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D84169E71BB2C87000C805CE /* MoodDiaryModel.xcdatamodeld in Sources */,
+				D84169E91BB2C9FC00C805CE /* DiaryEntryMood.swift in Sources */,
 				D8F3E5011BAF3EED0042B543 /* PersistenceTests.swift in Sources */,
+				D84169E81BB2C9EC00C805CE /* PersistentDiaryEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
