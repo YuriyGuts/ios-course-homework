@@ -22,7 +22,7 @@
 		D8F3E4F11BAF3EED0042B543 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8F3E4EF1BAF3EED0042B543 /* Main.storyboard */; };
 		D8F3E4F31BAF3EED0042B543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8F3E4F21BAF3EED0042B543 /* Assets.xcassets */; };
 		D8F3E4F61BAF3EED0042B543 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8F3E4F41BAF3EED0042B543 /* LaunchScreen.storyboard */; };
-		D8F3E5011BAF3EED0042B543 /* MoodDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E5001BAF3EED0042B543 /* MoodDiaryTests.swift */; };
+		D8F3E5011BAF3EED0042B543 /* PersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E5001BAF3EED0042B543 /* PersistenceTests.swift */; };
 		D8F3E50C1BAF3EED0042B543 /* MoodDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E50B1BAF3EED0042B543 /* MoodDiaryUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +62,7 @@
 		D8F3E4F51BAF3EED0042B543 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8F3E4F71BAF3EED0042B543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8F3E4FC1BAF3EED0042B543 /* MoodDiaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoodDiaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8F3E5001BAF3EED0042B543 /* MoodDiaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodDiaryTests.swift; sourceTree = "<group>"; };
+		D8F3E5001BAF3EED0042B543 /* PersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
 		D8F3E5021BAF3EED0042B543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8F3E5071BAF3EED0042B543 /* MoodDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoodDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8F3E50B1BAF3EED0042B543 /* MoodDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodDiaryUITests.swift; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		D8F3E4FF1BAF3EED0042B543 /* MoodDiaryTests */ = {
 			isa = PBXGroup;
 			children = (
-				D8F3E5001BAF3EED0042B543 /* MoodDiaryTests.swift */,
+				D8F3E5001BAF3EED0042B543 /* PersistenceTests.swift */,
 				D8F3E5021BAF3EED0042B543 /* Info.plist */,
 			);
 			path = MoodDiaryTests;
@@ -336,7 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8F3E5011BAF3EED0042B543 /* MoodDiaryTests.swift in Sources */,
+				D8F3E5011BAF3EED0042B543 /* PersistenceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
