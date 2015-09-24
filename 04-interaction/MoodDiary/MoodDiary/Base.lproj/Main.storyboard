@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="height" constant="18" id="PD6-oe-Cc2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                 <connections>
                                     <action selector="diaryEntryTitleEditingDidEnd:" destination="JEX-9P-axG" eventType="editingDidEnd" id="y2F-pg-lb9"/>
                                 </connections>
@@ -87,7 +87,7 @@
                                         </attributes>
                                     </fragment>
                                 </attributedString>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

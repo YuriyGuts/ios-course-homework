@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITextViewDelegate {
+class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var diaryEntryTitleEditor: UITextField?
     
@@ -63,6 +63,9 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func setUpEditors() {
+        if let titleEditor = self.diaryEntryTitleEditor {
+            titleEditor.delegate = self
+        }
         if let bodyEditor = self.diaryEntryBodyEditor {
             bodyEditor.delegate = self
         }
@@ -116,5 +119,25 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             object: nil,
             userInfo: ["diaryEntry": diaryEntry]
         )
+    }
+    
+    // MARK: - Keyboard interaction
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // As per the requirements, the Return key on the title editor should move focus to body editor.
+        if textField === diaryEntryTitleEditor {
+            diaryEntryBodyEditor?.becomeFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        // As per the requirements, the Return key on the body editor should hide the keyboard.
+        if textView === diaryEntryBodyEditor && text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }
