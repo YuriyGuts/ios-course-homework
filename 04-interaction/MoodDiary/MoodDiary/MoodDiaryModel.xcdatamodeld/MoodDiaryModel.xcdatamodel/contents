@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="DiaryEntry" representedClassName=".PersistentDiaryEntry" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="date" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="mood" attributeType="Integer 32" minValueString="0" maxValueString="2" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DiaryEntry" positionX="-117" positionY="-60" width="128" height="103"/>
+    </elements>
+</model>
