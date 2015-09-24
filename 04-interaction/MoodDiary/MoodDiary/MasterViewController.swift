@@ -80,7 +80,7 @@ class MasterViewController: UITableViewController {
     
     func handleDiaryEntryUpdatedNotification(notification: NSNotification) {
         saveManagedObjectContext()
-        invalidateDisplayedDiaryEntries()
+        invalidateDisplayedDiaryEntries(animated: true)
     }
     
     func handleSettingsChangedNotification(notification: NSNotification) {

@@ -112,7 +112,15 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Diary Entry Title" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Diary Entry Title" id="mOI-FS-AaM">
+                        <barButtonItem key="rightBarButtonItem" image="calendar" id="R37-XD-Yvx">
+                            <connections>
+                                <segue destination="L0h-QY-pvk" kind="popoverPresentation" identifier="showDatePicker" popoverAnchorBarButtonItem="R37-XD-Yvx" id="phH-Oa-FkM">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="diaryEntryBodyEditor" destination="1Y9-Xc-bhe" id="JwO-zd-rID"/>
                         <outlet property="diaryEntryMoodEditor" destination="7ij-hs-Yed" id="l3Y-nB-0ar"/>
@@ -124,6 +132,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ziZ-zv-TgR">
+            <objects>
+                <navigationController id="L0h-QY-pvk" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kJv-xS-AQb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Non-0X-0cV" kind="relationship" relationship="rootViewController" id="AVz-I7-8p6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="osH-lB-k4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442" y="129"/>
+        </scene>
+        <!--Entry Date-->
+        <scene sceneID="bDH-Sq-BTm">
+            <objects>
+                <viewController title="Entry Date" id="Non-0X-0cV" customClass="DatePickerViewController" customModule="MoodDiary" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QRd-bS-eIR"/>
+                        <viewControllerLayoutGuide type="bottom" id="NCd-Qz-fZv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="if0-AB-1KM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Ww-6F-7NE">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <date key="date" timeIntervalSinceReferenceDate="464821440.32402802">
+                                    <!--2015-09-24 21:04:00 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Ww-6F-7NE" firstAttribute="leading" secondItem="if0-AB-1KM" secondAttribute="leadingMargin" constant="-20" id="2VJ-mi-nL2"/>
+                            <constraint firstItem="NCd-Qz-fZv" firstAttribute="top" secondItem="6Ww-6F-7NE" secondAttribute="bottom" id="5N9-gs-HFd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Ww-6F-7NE" secondAttribute="trailing" constant="-20" id="HCV-WQ-LB9"/>
+                            <constraint firstItem="6Ww-6F-7NE" firstAttribute="top" secondItem="QRd-bS-eIR" secondAttribute="bottom" id="Zpt-2g-XT9"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Entry Date" id="B0j-OL-bAw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="tlt-pF-wiw">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="Non-0X-0cV" id="6wA-zA-c8f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="datePicker" destination="6Ww-6F-7NE" id="EGa-g6-PpN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x0K-AX-NH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2165" y="129"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hlg-7M-AL5">
@@ -377,6 +445,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" width="24" height="25"/>
         <image name="mood_cloudy_sm" width="25" height="25"/>
         <image name="mood_rainy_sm" width="25" height="25"/>
         <image name="mood_sunny_bg" width="750" height="1334"/>

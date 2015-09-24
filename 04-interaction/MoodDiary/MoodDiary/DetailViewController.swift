@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, DatePickerDelegate {
 
     @IBOutlet weak var diaryEntryTitleEditor: UITextField?
     
@@ -75,7 +75,22 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDatePicker" {
+            guard let diaryEntry = diaryEntry, _ = diaryEntry.date else {
+                return
+            }
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DatePickerViewController
+            controller.displayedDate = diaryEntry.date!
+            controller.delegate = self
+        }
+    }
 
+    func datePickerDidClose(pickedDate pickedDate: NSDate) {
+        diaryEntryDateChanged(newDate: pickedDate)
+    }
+    
     func textViewDidChange(textView: UITextView) {
         diaryEntryBodyChanged(newBody: textView.attributedText)
     }
@@ -94,6 +109,13 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         }
     }
 
+    func diaryEntryDateChanged(newDate newDate: NSDate) {
+        if let diaryEntry = self.diaryEntry {
+            diaryEntry.date = newDate
+            postDiaryEntryUpdatedNotification(diaryEntry)
+        }
+    }
+    
     func diaryEntryTitleChanged(newTitle newTitle: String?) {
         if let navigationTitle = navigationBarTitle {
             navigationTitle.title = newTitle

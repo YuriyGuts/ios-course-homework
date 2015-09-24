@@ -18,6 +18,8 @@
 		D84169E71BB2C87000C805CE /* MoodDiaryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D84169D41BB1F8C100C805CE /* MoodDiaryModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		D84169E81BB2C9EC00C805CE /* PersistentDiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84169E41BB2082600C805CE /* PersistentDiaryEntry.swift */; settings = {ASSET_TAGS = (); }; };
 		D84169E91BB2C9FC00C805CE /* DiaryEntryMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BAE1BB0246D0065718B /* DiaryEntryMood.swift */; settings = {ASSET_TAGS = (); }; };
+		D85888671BB49DB900C80D8B /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85888661BB49DB900C80D8B /* DatePickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		D85888691BB4A97500C80D8B /* DatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85888681BB4A97500C80D8B /* DatePickerDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		D8CE7A101BAF7B7F0003CFB8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D8F3E4EA1BAF3EED0042B543 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */; };
 		D8F3E4EC1BAF3EED0042B543 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4EB1BAF3EED0042B543 /* MasterViewController.swift */; };
@@ -55,6 +57,8 @@
 		D8250BB41BB03D6B0065718B /* DateDisplayFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisplayFormatter.swift; sourceTree = "<group>"; };
 		D84169D51BB1F8C100C805CE /* MoodDiaryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoodDiaryModel.xcdatamodel; sourceTree = "<group>"; };
 		D84169E41BB2082600C805CE /* PersistentDiaryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentDiaryEntry.swift; sourceTree = "<group>"; };
+		D85888661BB49DB900C80D8B /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		D85888681BB4A97500C80D8B /* DatePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDelegate.swift; sourceTree = "<group>"; };
 		D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D8F3E4E61BAF3EED0042B543 /* MoodDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 				D8F3E4EB1BAF3EED0042B543 /* MasterViewController.swift */,
 				D8F3E4ED1BAF3EED0042B543 /* DetailViewController.swift */,
 				D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */,
+				D85888661BB49DB900C80D8B /* DatePickerViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -137,6 +142,15 @@
 				D8F3E4F41BAF3EED0042B543 /* LaunchScreen.storyboard */,
 			);
 			name = Visuals;
+			sourceTree = "<group>";
+		};
+		D858886A1BB4AAD800C80D8B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D85888681BB4A97500C80D8B /* DatePickerDelegate.swift */,
+			);
+			name = Protocols;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D8F3E4DD1BAF3EED0042B543 = {
@@ -163,10 +177,11 @@
 			isa = PBXGroup;
 			children = (
 				D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */,
-				D84169D21BB1F7FD00C805CE /* Controllers */,
-				D84169D31BB1F84900C805CE /* Visuals */,
 				D8F3E4F71BAF3EED0042B543 /* Info.plist */,
+				D84169D31BB1F84900C805CE /* Visuals */,
+				D84169D21BB1F7FD00C805CE /* Controllers */,
 				D84169D11BB1F7F000C805CE /* Model */,
+				D858886A1BB4AAD800C80D8B /* Protocols */,
 				D84169D01BB1F7E000C805CE /* Helpers */,
 			);
 			path = MoodDiary;
@@ -321,6 +336,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8250BB31BB03CC30065718B /* Settings.swift in Sources */,
+				D85888671BB49DB900C80D8B /* DatePickerViewController.swift in Sources */,
+				D85888691BB4A97500C80D8B /* DatePickerDelegate.swift in Sources */,
 				D8CE7A101BAF7B7F0003CFB8 /* SettingsViewController.swift in Sources */,
 				D8F3E4EE1BAF3EED0042B543 /* DetailViewController.swift in Sources */,
 				D84169D61BB1F8C100C805CE /* MoodDiaryModel.xcdatamodeld in Sources */,
