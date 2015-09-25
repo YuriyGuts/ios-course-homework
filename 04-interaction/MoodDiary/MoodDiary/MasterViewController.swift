@@ -11,9 +11,9 @@ import UIKit
 
 class MasterViewController: UITableViewController {
     
-    private var _cachedDisplayedDiaryEntries: [PersistentDiaryEntry]?
+    private var _cachedDisplayedDiaryEntries: [[PersistentDiaryEntry]]?
     
-    var displayedDiaryEntries: [PersistentDiaryEntry] {
+    var displayedDiaryEntries: [[PersistentDiaryEntry]] {
         if let _cachedDisplayedDiaryEntries = _cachedDisplayedDiaryEntries {
             return _cachedDisplayedDiaryEntries
         }
@@ -115,7 +115,7 @@ class MasterViewController: UITableViewController {
         
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let diaryEntry = displayedDiaryEntries[indexPath.row]
+                let diaryEntry = displayedDiaryEntries[indexPath.section][indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 controller.diaryEntry = diaryEntry
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -127,17 +127,32 @@ class MasterViewController: UITableViewController {
     // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedDiaryEntries.count
     }
 
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return displayedDiaryEntries[section].count
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if displayedDiaryEntries[section].count == 0 {
+            return nil
+        }
+        
+        switch section {
+        case 1:
+            return "This Week"
+        case 2:
+            return "Earlier"
+        default:
+            return "Today"
+        }
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        let diaryEntry = displayedDiaryEntries[indexPath.row]
+        let diaryEntry = displayedDiaryEntries[indexPath.section][indexPath.row]
         let displayTitle = (diaryEntry.title == nil || diaryEntry.title?.isEmpty == true)
             ? "(untitled)"
             : diaryEntry.title
@@ -163,7 +178,7 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Table Data Manipulation
     
-    func fetchDiaryEntries() -> [PersistentDiaryEntry] {
+    func fetchDiaryEntries() -> [[PersistentDiaryEntry]] {
         if let managedObjectContext = managedObjectContext {
             let fetchRequest = NSFetchRequest()
             fetchRequest.entity = NSEntityDescription.entityForName("DiaryEntry", inManagedObjectContext: managedObjectContext)
@@ -172,7 +187,7 @@ class MasterViewController: UITableViewController {
             do {
                 let fetchResults = try managedObjectContext.executeFetchRequest(fetchRequest)
                 if let results = fetchResults as? [PersistentDiaryEntry] {
-                    _cachedDisplayedDiaryEntries = results
+                    _cachedDisplayedDiaryEntries = diaryEntriesOrganizedIntoDateCategories(results)
                     return _cachedDisplayedDiaryEntries!
                 }
             }
@@ -181,6 +196,17 @@ class MasterViewController: UITableViewController {
             }
         }
         return []
+    }
+    
+    func diaryEntriesOrganizedIntoDateCategories(entries: [PersistentDiaryEntry], referenceDate: NSDate=NSDate()) -> [[PersistentDiaryEntry]] {
+        let todayBeginningDate = referenceDate.beginningOfDay()!
+        let thisWeekBeginningDate = referenceDate.beginningOfWeek()!
+        
+        return [
+            entries.filter({ $0.date >= todayBeginningDate }),
+            entries.filter({ $0.date >= thisWeekBeginningDate && $0.date < todayBeginningDate }),
+            entries.filter({ $0.date < thisWeekBeginningDate })
+        ]
     }
     
     func saveNewDiaryEntry() {
@@ -200,14 +226,17 @@ class MasterViewController: UITableViewController {
     func invalidateDisplayedDiaryEntries(animated animated: Bool = false) {
         _cachedDisplayedDiaryEntries = nil
         if animated {
-            tableView?.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
+            tableView?.reloadSections(
+                NSIndexSet(indexesInRange: NSRange(location: 0, length: displayedDiaryEntries.count)),
+                withRowAnimation: .Automatic
+            )
         } else {
             tableView?.reloadData()
         }
     }
     
     func displayedDiaryEntryAt(indexPath indexPath: NSIndexPath) -> PersistentDiaryEntry {
-        return displayedDiaryEntries[indexPath.row]
+        return displayedDiaryEntries[indexPath.section][indexPath.row]
     }
     
     func deleteDiaryEntryAt(indexPath indexPath: NSIndexPath) {

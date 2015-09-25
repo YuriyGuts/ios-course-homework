@@ -74,7 +74,7 @@ class SettingsViewController: UITableViewController {
         if let previewLabel = datePreviewLabel {
             let dateToDisplay = NSDate().beginningOfDay()
             let previewDateFormatter = DateDisplayFormatter(settings: createSettingsObjectFromUI())
-            previewLabel.text = previewDateFormatter.format(dateToDisplay)
+            previewLabel.text = previewDateFormatter.format(dateToDisplay!)
         }
     }
     
