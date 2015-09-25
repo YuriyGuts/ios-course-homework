@@ -91,7 +91,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         diaryEntryDateChanged(newDate: pickedDate)
     }
     
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidEndEditing(textView: UITextView) {
         diaryEntryBodyChanged(newBody: textView.attributedText)
     }
 
