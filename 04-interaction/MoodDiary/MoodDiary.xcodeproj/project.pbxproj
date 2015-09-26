@@ -156,7 +156,6 @@
 				D85888681BB4A97500C80D8B /* DatePickerDelegate.swift */,
 			);
 			name = Protocols;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		D8F3E4DD1BAF3EED0042B543 = {
