@@ -10,6 +10,10 @@ import UIKit
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, DatePickerDelegate {
 
+    private var keyboardWillShowNotificationObserver: NSObjectProtocol?
+    
+    private var keyboardWillHideNotificationObserver: NSObjectProtocol?
+    
     @IBOutlet weak var diaryEntryTitleEditor: UITextField?
     
     @IBOutlet weak var diaryEntryBodyEditor: UITextView?
@@ -58,8 +62,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.setUpEditors()
-        self.configureView()
+        setUpEditors()
+        configureView()
+        setUpNotificationObservers()
     }
     
     func setUpEditors() {
@@ -69,6 +74,25 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         if let bodyEditor = self.diaryEntryBodyEditor {
             bodyEditor.delegate = self
         }
+    }
+    
+    func setUpNotificationObservers() {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        let mainQueue = NSOperationQueue.mainQueue()
+        
+        keyboardWillShowNotificationObserver = notificationCenter.addObserverForName(
+            UIKeyboardWillShowNotification,
+            object: nil,
+            queue: mainQueue,
+            usingBlock: handleKeyboardWillShowNotification
+        )
+        
+        keyboardWillHideNotificationObserver = notificationCenter.addObserverForName(
+            UIKeyboardWillHideNotification,
+            object: nil,
+            queue: mainQueue,
+            usingBlock: handleKeyboardWillHideNotification
+        )
     }
 
     override func didReceiveMemoryWarning() {
@@ -161,5 +185,19 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             return false
         }
         return true
+    }
+    
+    func handleKeyboardWillShowNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+                let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+                diaryEntryBodyEditor?.contentInset = contentInsets
+            }
+        }
+    }
+    
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
+        let contentInsets = UIEdgeInsetsZero;
+        diaryEntryBodyEditor?.contentInset = contentInsets
     }
 }
