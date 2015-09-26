@@ -11,6 +11,8 @@ import UIKit
 
 class MasterViewController: UITableViewController {
     
+    private let _diaryEntryCellIdentifier = "DiaryEntryTableViewCell"
+    
     private var _cachedDisplayedDiaryEntries: [[PersistentDiaryEntry]]?
     
     var displayedDiaryEntries: [[PersistentDiaryEntry]] {
@@ -36,9 +38,20 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
         setUpSplitViewController()
         setUpDateDisplayFormatter()
         setUpNotificationObservers()
+    }
+    
+    func setUpTableView() {
+        // Enable auto row height adjustment.
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 70
+
+        // Register custom cells.
+        let nib = UINib(nibName: _diaryEntryCellIdentifier, bundle: nil)
+        tableView?.registerNib(nib, forCellReuseIdentifier: _diaryEntryCellIdentifier)
     }
     
     func setUpSplitViewController() {
@@ -150,19 +163,24 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(_diaryEntryCellIdentifier, forIndexPath: indexPath) as! DiaryEntryTableViewCell
 
         let diaryEntry = displayedDiaryEntries[indexPath.section][indexPath.row]
         let displayTitle = (diaryEntry.title == nil || diaryEntry.title?.isEmpty == true)
             ? "(untitled)"
             : diaryEntry.title
 
-        cell.imageView?.image = AssetsHelper.iconImageForMood(diaryEntry.moodEnum!)
-        cell.imageView?.tintColor = AssetsHelper.iconTintForMood(diaryEntry.moodEnum!)
-        cell.textLabel!.text = displayTitle
-        cell.detailTextLabel!.text = dateDisplayFormatter!.format(diaryEntry.date!)
+        cell.moodImage?.image = AssetsHelper.iconImageForMood(diaryEntry.moodEnum!)
+        cell.moodImage?.tintColor = AssetsHelper.iconTintForMood(diaryEntry.moodEnum!)
+        cell.titleLabel?.text = displayTitle
+        cell.dateLabel?.text = dateDisplayFormatter!.format(diaryEntry.date!)
+        cell.bodyLabel?.text = diaryEntry.body?.string
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("showDetail", sender: self)
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -20,6 +20,8 @@
 		D84169E91BB2C9FC00C805CE /* DiaryEntryMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8250BAE1BB0246D0065718B /* DiaryEntryMood.swift */; settings = {ASSET_TAGS = (); }; };
 		D85888671BB49DB900C80D8B /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85888661BB49DB900C80D8B /* DatePickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D85888691BB4A97500C80D8B /* DatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85888681BB4A97500C80D8B /* DatePickerDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		D88C5FD21BB6A87B0078630B /* DiaryEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D88C5FD11BB6A87B0078630B /* DiaryEntryTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		D88C5FD41BB6B6800078630B /* DiaryEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88C5FD31BB6B6800078630B /* DiaryEntryTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		D8CE7A101BAF7B7F0003CFB8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D8F3E4EA1BAF3EED0042B543 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */; };
 		D8F3E4EC1BAF3EED0042B543 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4EB1BAF3EED0042B543 /* MasterViewController.swift */; };
@@ -59,6 +61,8 @@
 		D84169E41BB2082600C805CE /* PersistentDiaryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentDiaryEntry.swift; sourceTree = "<group>"; };
 		D85888661BB49DB900C80D8B /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		D85888681BB4A97500C80D8B /* DatePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDelegate.swift; sourceTree = "<group>"; };
+		D88C5FD11BB6A87B0078630B /* DiaryEntryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiaryEntryTableViewCell.xib; sourceTree = "<group>"; };
+		D88C5FD31BB6B6800078630B /* DiaryEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryTableViewCell.swift; sourceTree = "<group>"; };
 		D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D8F3E4E61BAF3EED0042B543 /* MoodDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				D8F3E4EF1BAF3EED0042B543 /* Main.storyboard */,
 				D8F3E4F21BAF3EED0042B543 /* Assets.xcassets */,
 				D8F3E4F41BAF3EED0042B543 /* LaunchScreen.storyboard */,
+				D88C5FD11BB6A87B0078630B /* DiaryEntryTableViewCell.xib */,
+				D88C5FD31BB6B6800078630B /* DiaryEntryTableViewCell.swift */,
 			);
 			name = Visuals;
 			sourceTree = "<group>";
@@ -310,6 +316,7 @@
 			files = (
 				D8F3E4F61BAF3EED0042B543 /* LaunchScreen.storyboard in Resources */,
 				D8F3E4F31BAF3EED0042B543 /* Assets.xcassets in Resources */,
+				D88C5FD21BB6A87B0078630B /* DiaryEntryTableViewCell.xib in Resources */,
 				D8F3E4F11BAF3EED0042B543 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +355,7 @@
 				D80C375F1BB151E400989F7A /* AssetsHelper.swift in Sources */,
 				D80C375B1BB0A1F700989F7A /* Notifications.swift in Sources */,
 				D8250BAF1BB0246D0065718B /* DiaryEntryMood.swift in Sources */,
+				D88C5FD41BB6B6800078630B /* DiaryEntryTableViewCell.swift in Sources */,
 				D84169E61BB2082600C805CE /* PersistentDiaryEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
