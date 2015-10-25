@@ -22,13 +22,9 @@ class SettingsViewController: UITableViewController {
 
     @IBOutlet weak var datePreviewLabel: UILabel?
     
-    @IBAction func doneButtonPressed(sender: AnyObject) {
-        saveSettings()
-        closeScreen()
-    }
-    
     @IBAction func useRelativeDatesSwitchChanged(sender: UISwitch) {
         updateDatePreview()
+        saveSettings()
     }
     
     func saveSettings() {
@@ -46,10 +42,6 @@ class SettingsViewController: UITableViewController {
         )
     }
     
-    func closeScreen() {
-        navigationController?.dismissViewControllerAnimated(true, completion: nil)
-    }
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         
@@ -58,6 +50,7 @@ class SettingsViewController: UITableViewController {
                 ? UITableViewCellAccessoryType.Checkmark
                 : UITableViewCellAccessoryType.None
             updateDatePreview()
+            saveSettings()
         }
         
         return cell

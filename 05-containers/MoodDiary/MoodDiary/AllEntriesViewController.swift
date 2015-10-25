@@ -1,5 +1,5 @@
 //
-//  MasterViewController.swift
+//  AllEntriesViewController.swift
 //  MoodDiary
 //
 //  Created by Yuriy Guts on 20.09.15.
@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class MasterViewController: UITableViewController {
+class AllEntriesViewController: UITableViewController {
     
     private let _diaryEntryCellIdentifier = "DiaryEntryTableViewCell"
     
@@ -28,8 +28,6 @@ class MasterViewController: UITableViewController {
         }
     }
 
-    var detailViewController: DetailViewController? = nil
-    
     var dateDisplayFormatter: DateDisplayFormatter? = nil
     
     var settingsChangedObserver: NSObjectProtocol? = nil
@@ -39,7 +37,6 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        setUpSplitViewController()
         setUpDateDisplayFormatter()
         setUpNotificationObservers()
     }
@@ -52,13 +49,6 @@ class MasterViewController: UITableViewController {
         // Register custom cells.
         let nib = UINib(nibName: _diaryEntryCellIdentifier, bundle: nil)
         tableView?.registerNib(nib, forCellReuseIdentifier: _diaryEntryCellIdentifier)
-    }
-    
-    func setUpSplitViewController() {
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-        }
     }
     
     func setUpDateDisplayFormatter() {
@@ -103,11 +93,6 @@ class MasterViewController: UITableViewController {
         invalidateDisplayedDiaryEntries(animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
-        super.viewWillAppear(animated)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -120,19 +105,11 @@ class MasterViewController: UITableViewController {
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showSettings" {
-            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! SettingsViewController
-            let settings = readSettingsFromAppDelegate()
-            controller.loadSettingsObjectIntoUI(settings!)
-        }
-        
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "showEditEntryScreen" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let diaryEntry = displayedDiaryEntries[indexPath.section][indexPath.row]
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.diaryEntry = diaryEntry
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
+                let editEntryController = segue.destinationViewController as! EditEntryViewController
+                editEntryController.diaryEntry = diaryEntry
             }
         }
     }
@@ -180,7 +157,7 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showDetail", sender: self)
+        performSegueWithIdentifier("showEditEntryScreen", sender: self)
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -20,17 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Override point for customization after application launch.
         settings = Settings()
         
-        let splitViewController = self.window!.rootViewController as! UISplitViewController
-        let splitLeftNavigationController = splitViewController.viewControllers[0] as! UINavigationController
-        let splitRightNavigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
+        let tabController = self.window!.rootViewController as! UITabBarController
+        let allEntriesTabNavigationController = tabController.viewControllers![0] as! UINavigationController
+        let allEntriesTabController = allEntriesTabNavigationController.viewControllers[0] as! AllEntriesViewController
+        let settingsTabNavigationController = tabController.viewControllers![2] as! UINavigationController
+        let settingsTabController = settingsTabNavigationController.viewControllers[0] as! SettingsViewController
         
-        let tabController = splitLeftNavigationController.viewControllers[0] as! UITabBarController
-        let masterNavigationController = tabController.viewControllers![0] as! UINavigationController
-        let masterController = masterNavigationController.viewControllers[0] as! MasterViewController
-        
-        masterController.managedObjectContext = self.managedObjectContext
-        splitRightNavigationController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
-        splitViewController.delegate = self
+        allEntriesTabController.managedObjectContext = self.managedObjectContext
+        settingsTabController.loadSettingsObjectIntoUI(settings!)
         
         return true
     }
@@ -55,19 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    // MARK: - Split view
-
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
-        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
-        if topAsDetailController.diaryEntry == nil {
-            // Return true to indicate that we have handled the collapse by doing nothing;
-            // the secondary controller will be discarded.
-            return true
-        }
-        return false
     }
 
     // MARK: - Core Data stack

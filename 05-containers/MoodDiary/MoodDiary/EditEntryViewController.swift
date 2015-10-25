@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  EditEntryViewController.swift
 //  MoodDiary
 //
 //  Created by Yuriy Guts on 20.09.15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, DatePickerDelegate {
+class EditEntryViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, DatePickerDelegate {
 
     private var keyboardWillShowNotificationObserver: NSObjectProtocol?
     
