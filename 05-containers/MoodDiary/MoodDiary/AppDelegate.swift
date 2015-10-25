@@ -23,10 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabController = self.window!.rootViewController as! UITabBarController
         let allEntriesTabNavigationController = tabController.viewControllers![0] as! UINavigationController
         let allEntriesTabController = allEntriesTabNavigationController.viewControllers[0] as! AllEntriesViewController
+
+        let entriesByMoodNavigationController = tabController.viewControllers![1] as! UINavigationController
+        let entriesByMoodPageContainerController = entriesByMoodNavigationController.viewControllers[0] as! EntriesByMoodPageContainerController
+        
         let settingsTabNavigationController = tabController.viewControllers![2] as! UINavigationController
         let settingsTabController = settingsTabNavigationController.viewControllers[0] as! SettingsViewController
         
         allEntriesTabController.managedObjectContext = self.managedObjectContext
+        entriesByMoodPageContainerController.managedObjectContext = self.managedObjectContext
         settingsTabController.loadSettingsObjectIntoUI(settings!)
         
         return true

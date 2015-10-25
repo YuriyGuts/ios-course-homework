@@ -22,6 +22,8 @@
 		D85888691BB4A97500C80D8B /* DatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85888681BB4A97500C80D8B /* DatePickerDelegate.swift */; };
 		D88C5FD21BB6A87B0078630B /* DiaryEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D88C5FD11BB6A87B0078630B /* DiaryEntryTableViewCell.xib */; };
 		D88C5FD41BB6B6800078630B /* DiaryEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88C5FD31BB6B6800078630B /* DiaryEntryTableViewCell.swift */; };
+		D8B17F951BDD743200749673 /* EntriesByMoodTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B17F941BDD743200749673 /* EntriesByMoodTableController.swift */; };
+		D8B17F971BDD749700749673 /* EntriesByMoodPageContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B17F961BDD749700749673 /* EntriesByMoodPageContainerController.swift */; };
 		D8CE7A101BAF7B7F0003CFB8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */; };
 		D8F3E4EA1BAF3EED0042B543 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */; };
 		D8F3E4EC1BAF3EED0042B543 /* AllEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3E4EB1BAF3EED0042B543 /* AllEntriesViewController.swift */; };
@@ -63,6 +65,8 @@
 		D85888681BB4A97500C80D8B /* DatePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDelegate.swift; sourceTree = "<group>"; };
 		D88C5FD11BB6A87B0078630B /* DiaryEntryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiaryEntryTableViewCell.xib; sourceTree = "<group>"; };
 		D88C5FD31BB6B6800078630B /* DiaryEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntryTableViewCell.swift; sourceTree = "<group>"; };
+		D8B17F941BDD743200749673 /* EntriesByMoodTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesByMoodTableController.swift; sourceTree = "<group>"; };
+		D8B17F961BDD749700749673 /* EntriesByMoodPageContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesByMoodPageContainerController.swift; sourceTree = "<group>"; };
 		D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D8F3E4E61BAF3EED0042B543 /* MoodDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8F3E4E91BAF3EED0042B543 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				D8F3E4ED1BAF3EED0042B543 /* EditEntryViewController.swift */,
 				D8CE7A0F1BAF7B7F0003CFB8 /* SettingsViewController.swift */,
 				D85888661BB49DB900C80D8B /* DatePickerViewController.swift */,
+				D8B17F941BDD743200749673 /* EntriesByMoodTableController.swift */,
+				D8B17F961BDD749700749673 /* EntriesByMoodPageContainerController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -343,7 +349,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8250BB31BB03CC30065718B /* Settings.swift in Sources */,
+				D8B17F951BDD743200749673 /* EntriesByMoodTableController.swift in Sources */,
 				D85888671BB49DB900C80D8B /* DatePickerViewController.swift in Sources */,
+				D8B17F971BDD749700749673 /* EntriesByMoodPageContainerController.swift in Sources */,
 				D85888691BB4A97500C80D8B /* DatePickerDelegate.swift in Sources */,
 				D8CE7A101BAF7B7F0003CFB8 /* SettingsViewController.swift in Sources */,
 				D8F3E4EE1BAF3EED0042B543 /* EditEntryViewController.swift in Sources */,

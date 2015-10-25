@@ -13,5 +13,9 @@ class Notifications {
     
     static let SettingsChangedNotification = Notifications.prefix + "SettingsChangedNotification"
     
+    static let DiaryEntryCreatedNotification = Notifications.prefix + "DiaryEntryCreatedNotification"
+    
     static let DiaryEntryUpdatedNotification = Notifications.prefix + "DiaryEntryUpdatedNotification"
+    
+    static let DiaryEntryDeletedNotification = Notifications.prefix + "DiaryEntryDeletedNotification"
 }

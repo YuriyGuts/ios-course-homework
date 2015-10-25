@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mood_sunny_bg" translatesAutoresizingMaskIntoConstraints="NO" id="bqT-ko-Ry7">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <animations/>
                             </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7ij-hs-Yed">
@@ -58,7 +58,7 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Y9-Xc-bhe">
-                                <rect key="frame" x="15" y="149" width="570" height="382"/>
+                                <rect key="frame" x="15" y="149" width="570" height="431"/>
                                 <animations/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3371" y="-2852"/>
+            <point key="canvasLocation" x="4997" y="-2852"/>
         </scene>
         <!--Entry Date Picker Navigation-->
         <scene sceneID="ziZ-zv-TgR">
@@ -139,7 +139,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="osH-lB-k4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4228" y="-2852"/>
+            <point key="canvasLocation" x="5814" y="-2852"/>
         </scene>
         <!--Entry Date Picker-->
         <scene sceneID="bDH-Sq-BTm">
@@ -185,7 +185,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0K-AX-NH2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5067" y="-2852"/>
+            <point key="canvasLocation" x="6747" y="-2852"/>
         </scene>
         <!--Settings-->
         <scene sceneID="tRE-0k-L58">
@@ -339,10 +339,10 @@
             </objects>
             <point key="canvasLocation" x="2487" y="-824"/>
         </scene>
-        <!--Tabs-->
+        <!--Root Tabs-->
         <scene sceneID="jJW-Zt-y68">
             <objects>
-                <tabBarController title="Tabs" id="LsD-uJ-DOb" sceneMemberID="viewController">
+                <tabBarController title="Root Tabs" id="LsD-uJ-DOb" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="IIJ-Zd-xdC"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ybo-7R-5GU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -360,15 +360,66 @@
             </objects>
             <point key="canvasLocation" x="809" y="-1856"/>
         </scene>
-        <!--Entries By Mood Page-->
+        <!--Entries by Mood Page-->
         <scene sceneID="xwT-BT-214">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Entries By Mood Page" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="tPO-ax-GhP" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Entries by Mood Page" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="tPO-ax-GhP" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="hKR-PJ-Jqr"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qkG-Ge-vcf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2487" y="-1856"/>
+            <point key="canvasLocation" x="3317" y="-1856.5"/>
+        </scene>
+        <!--Entries by Mood Page-->
+        <scene sceneID="kUD-aZ-Nil">
+            <objects>
+                <tableViewController storyboardIdentifier="EntriesByMoodTableController" title="Entries by Mood Page" id="h9o-hg-xi2" customClass="EntriesByMoodTableController" customModule="MoodDiary" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ugk-dq-MLG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DiaryEntryTableViewCell" id="3Lk-3M-pYR">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Lk-3M-pYR" id="ud2-bl-yc5">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <segue destination="oKW-df-b46" kind="show" identifier="showEditEntryScreen" id="FMw-6d-6YC"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="h9o-hg-xi2" id="76g-oZ-Ogc"/>
+                            <outlet property="delegate" destination="h9o-hg-xi2" id="g2q-04-oFT"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VTe-LB-6Gh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4134" y="-1856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CxT-N1-acf">
+            <objects>
+                <navigationController id="oKW-df-b46" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q2c-mB-XSu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="290-yG-1hJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h1U-DP-ORh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4997" y="-1856"/>
         </scene>
         <!--All Entries-->
         <scene sceneID="smW-Zh-WAh">
@@ -453,10 +504,10 @@
             </objects>
             <point key="canvasLocation" x="1675" y="-824"/>
         </scene>
-        <!--Entries By Mood-->
+        <!--Entries by Mood-->
         <scene sceneID="YQB-M0-OwR">
             <objects>
-                <navigationController title="Entries By Mood" automaticallyAdjustsScrollViewInsets="NO" id="zdR-MI-fSr" sceneMemberID="viewController">
+                <navigationController title="Entries by Mood" automaticallyAdjustsScrollViewInsets="NO" id="zdR-MI-fSr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="By Mood" image="entries_by_weather_bar" id="xpr-30-1Sd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uln-kV-rwd">
@@ -466,12 +517,68 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="tPO-ax-GhP" kind="relationship" relationship="rootViewController" id="knh-5B-z5e"/>
+                        <segue destination="ceQ-9c-AfE" kind="relationship" relationship="rootViewController" id="OYn-DS-4yf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VGx-fn-1qF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1675" y="-1856"/>
+        </scene>
+        <!--Entries by Mood Page Container-->
+        <scene sceneID="osQ-G1-4V0">
+            <objects>
+                <viewController title="Entries by Mood Page Container" id="ceQ-9c-AfE" customClass="EntriesByMoodPageContainerController" customModule="MoodDiary" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6qW-nX-HqD"/>
+                        <viewControllerLayoutGuide type="bottom" id="SDN-ii-tVN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CKz-ew-88A">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iZT-aK-d8c">
+                                <rect key="frame" x="241" y="72" width="119" height="29"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="" image="mood_sunny_sm"/>
+                                    <segment title="" image="mood_cloudy_sm"/>
+                                    <segment title="" image="mood_rainy_sm"/>
+                                </segments>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="moodFilterChanged:" destination="ceQ-9c-AfE" eventType="valueChanged" id="0F5-NS-J58"/>
+                                </connections>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Pl-eK-mus">
+                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="tPO-ax-GhP" kind="embed" identifier="embedPageControllerSegue" id="j4B-ZX-jGD"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Pl-eK-mus" firstAttribute="top" secondItem="6qW-nX-HqD" secondAttribute="bottom" constant="44" id="JXO-Pb-sMO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Pl-eK-mus" secondAttribute="trailing" constant="-20" id="L7X-0x-snV"/>
+                            <constraint firstItem="SDN-ii-tVN" firstAttribute="top" secondItem="7Pl-eK-mus" secondAttribute="bottom" id="XLl-Rf-0mf"/>
+                            <constraint firstItem="iZT-aK-d8c" firstAttribute="top" secondItem="6qW-nX-HqD" secondAttribute="bottom" constant="8" id="bEb-bV-8rs"/>
+                            <constraint firstItem="7Pl-eK-mus" firstAttribute="leading" secondItem="CKz-ew-88A" secondAttribute="leadingMargin" constant="-20" id="eWR-R9-knY"/>
+                            <constraint firstItem="iZT-aK-d8c" firstAttribute="centerX" secondItem="CKz-ew-88A" secondAttribute="centerX" id="k3f-cg-hBb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Entries by Mood" id="rjQ-wB-zDc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fVu-oj-esb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2487" y="-1856"/>
         </scene>
     </scenes>
     <resources>
@@ -484,4 +591,7 @@
         <image name="mood_sunny_sm" width="25" height="25"/>
         <image name="settings_bar" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="290-yG-1hJ"/>
+    </inferredMetricsTieBreakers>
 </document>
